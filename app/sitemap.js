@@ -3,7 +3,7 @@ import { getAllPosts } from '../lib/posts'; // แก้จาก getSortedPosts
 
 export default async function sitemap() {
   // 1. กำหนดชื่อโดเมนหลักของคุณ
-  const baseUrl = "https://seo-expert-thailand.vercel.app/"; 
+  const baseUrl = "https://seo-expert-thailand.vercel.app"; 
 
   // 2. ดึงข้อมูลบทความโดยใช้ฟังก์ชัน getAllPosts ที่อยู่ใน lib/posts.js
   const posts = getAllPosts();
