@@ -12,4 +12,4 @@ Disallow: /static/
 Disallow: /admin/
 
 # บอกตำแหน่ง Sitemap เพื่อให้ Google ไต่เก็บข้อมูลได้เร็วขึ้น 10 เท่า
-Sitemap: https://www.yourdomain.com/sitemap.xml
+Sitemap: https://seo-expert-thailand.vercel.app/sitemap.xml
