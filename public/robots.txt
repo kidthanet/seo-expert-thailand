@@ -1,0 +1,15 @@
+# สั่งให้ Search Engine ทุกค่าย (Google, Bing, Yahoo) เข้ามาเก็บข้อมูลได้
+User-agent: *
+
+# ส่วนที่อนุญาตให้เก็บข้อมูล (หน้าหลักและบทความ)
+Allow: /
+Allow: /blog/
+
+# ส่วนที่ไม่อนุญาตให้เก็บข้อมูล (เพื่อความปลอดภัยและไม่ให้เสียคะแนน SEO)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /admin/
+
+# บอกตำแหน่ง Sitemap เพื่อให้ Google ไต่เก็บข้อมูลได้เร็วขึ้น 10 เท่า
+Sitemap: https://www.yourdomain.com/sitemap.xml

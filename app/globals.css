@@ -1,0 +1,159 @@
+/* ============================================================
+   1. SETTINGS & VARIABLES (โทนสี Professional Blue & White)
+   ============================================================ */
+:root {
+  --primary-blue: #003366;    /* สีน้ำเงินเข้ม ดูน่าเชื่อถือ */
+  --secondary-blue: #0056b3;  /* สีน้ำเงินสว่าง สำหรับปุ่มและลิงก์ */
+  --accent-gold: #d4af37;     /* สีทอง สำหรับเน้นราคาหรือจุดสำคัญ */
+  --text-dark: #2d3436;       /* สีตัวอักษรหลัก */
+  --text-light: #636e72;      /* สีตัวอักษรรอง */
+  --bg-white: #ffffff;
+  --bg-light: #f8f9fa;        /* สีเทาอ่อนสำหรับพื้นหลัง Section */
+}
+
+/* ============================================================
+   2. RESET & BASE STYLES
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography SEO Focus */
+h1, h2, h3 {
+  color: var(--primary-blue);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Helper Class */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================================
+   3. COMPONENTS (ปุ่ม และ กล่องบริการ)
+   ============================================================ */
+button {
+  background-color: var(--secondary-blue);
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+}
+
+button:hover {
+  background-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+}
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+}
+
+.price-tag {
+  color: var(--primary-blue) !important;
+  background: linear-gradient(120deg, #fff9c4 0%, #fff9c4 100%);
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   4. BLOG CONTENT STYLING (สำหรับ Markdown Content)
+   ============================================================ */
+/* คลาสนี้จะจัดการเนื้อหาที่ดึงมาจาก Markdown โดยเฉพาะ */
+.blog-content {
+  line-height: 1.8;
+  font-size: 1.15rem;
+}
+
+.blog-content h2 { 
+  margin: 40px 0 20px; 
+  color: var(--primary-blue); 
+  font-size: 1.8rem; 
+  border-bottom: 2px solid var(--bg-light);
+  padding-bottom: 10px;
+}
+
+.blog-content h3 { 
+  margin: 30px 0 15px; 
+  color: var(--secondary-blue); 
+  font-size: 1.4rem; 
+}
+
+.blog-content p { 
+  margin-bottom: 20px; 
+}
+
+.blog-content ul, .blog-content ol { 
+  margin-bottom: 25px; 
+  padding-left: 25px; 
+}
+
+.blog-content li { 
+  margin-bottom: 12px; 
+}
+
+.blog-content strong { 
+  color: var(--primary-blue); 
+  font-weight: 700;
+}
+
+.blog-content blockquote { 
+  border-left: 5px solid var(--accent-gold); 
+  padding: 20px 30px; 
+  background: #fffbe6; 
+  margin: 35px 0; 
+  font-style: italic;
+  border-radius: 0 10px 10px 0;
+}
+
+.blog-content a {
+  color: var(--secondary-blue);
+  text-decoration: underline;
+}
+
+.blog-content a:hover {
+  color: var(--primary-blue);
+}
+
+/* ============================================================
+   5. RESPONSIVE DESIGN (มือถือ)
+   ============================================================ */
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.7rem; }
+  .blog-content { font-size: 1.1rem; }
+  
+  section { 
+    padding: 40px 10px !important; 
+  }
+}

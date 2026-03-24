@@ -1,0 +1,29 @@
+// app/blog/page.js
+import { getAllPosts } from '@/lib/posts';
+import Link from 'next/link';
+
+export const metadata = {
+  title: 'คลังบทความ SEO และ WordPress | อัปเดตเทคนิคใหม่ล่าสุด',
+};
+
+export default function BlogPage() {
+  const posts = getAllPosts();
+
+  return (
+    <div className="container" style={{ padding: '60px 20px' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>คลังความรู้ SEO</h1>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+        {posts.map((post) => (
+          <div key={post.slug} className="service-card" style={{ padding: '20px', borderRadius: '12px', border: '1px solid #eee' }}>
+            <h3>{post.title}</h3>
+            <p style={{ fontSize: '0.9rem' }}>{post.date}</p>
+            <p>{post.description}</p>
+            <Link href={`/blog/${post.slug}`} style={{ color: 'var(--secondary-blue)', fontWeight: 'bold' }}>
+              อ่านบทความนี้...
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

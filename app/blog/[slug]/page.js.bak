@@ -1,0 +1,151 @@
+// app/blog/[slug]/page.js
+import { getPostData, getAllPosts } from '../../../lib/posts';
+import Link from 'next/link';
+
+// 1. สร้าง Dynamic Metadata เพื่อให้หัวข้อและคำอธิบายตรงตามเนื้อหาบทความ
+export async function generateMetadata({ params }) {
+  const post = await getPostData(params.slug);
+  if (!post) return { title: 'ไม่พบเนื้อหาบทความ' };
+
+  return {
+    title: `${post.title} | SEO Expert Thailand`,
+    description: post.description,
+    alternates: {
+      canonical: `https://www.yourdomain.com/blog/${params.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['เอ๋ ชี้ชะตาจร'],
+    },
+  };
+}
+
+// 2. กำหนด Static Params เพื่อให้ Next.js Build หน้าเว็บรอไว้ล่วงหน้า (เร็วมาก)
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function Post({ params }) {
+  const postData = await getPostData(params.slug);
+  const allPosts = getAllPosts();
+
+  // กรองบทความปัจจุบันออกเพื่อหาบทความอื่นๆ มาแสดงเป็น "บทความที่เกี่ยวข้อง"
+  const relatedPosts = allPosts
+    .filter((post) => post.slug !== params.slug)
+    .slice(0, 2); // ดึงมาโชว์ 2 บทความ
+
+  if (!postData) {
+    return <div style={{ padding: '150px', textAlign: 'center' }}>ไม่พบเนื้อหาบทความครับ</div>;
+  }
+
+  // 3. ข้อมูล JSON-LD สำหรับ Article Schema (ช่วยให้ Google แสดงผลเป็นข่าว/บทความ)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": postData.title,
+    "description": postData.description,
+    "datePublished": postData.date,
+    "author": {
+      "@type": "Person",
+      "name": "เอ๋ ชี้ชะตาจร",
+      "url": "https://www.yourdomain.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "SEO Expert Thailand",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.yourdomain.com/logo.png"
+      }
+    }
+  };
+
+  return (
+    <article style={{ padding: '120px 20px 80px', maxWidth: '850px', margin: '0 auto' }}>
+      {/* ฝัง Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* Breadcrumbs: ช่วยเรื่องโครงสร้าง Link ในสายตา Google */}
+      <nav style={{ fontSize: '0.9rem', marginBottom: '20px', color: '#666' }}>
+        <Link href="/" style={{ color: 'var(--secondary-blue)' }}>หน้าแรก</Link> &raquo; 
+        <Link href="/blog" style={{ color: 'var(--secondary-blue)', marginLeft: '5px' }}>บทความ</Link> &raquo; 
+        <span style={{ marginLeft: '5px' }}>{postData.title}</span>
+      </nav>
+
+      <header style={{ marginBottom: '40px' }}>
+        <h1 style={{ fontSize: '2.8rem', color: 'var(--primary-blue)', lineHeight: '1.2', marginBottom: '15px' }}>
+          {postData.title}
+        </h1>
+        <div style={{ color: '#888', display: 'flex', gap: '20px', fontSize: '0.95rem' }}>
+          <span>📅 เผยแพร่เมื่อ: {postData.date}</span>
+          <span>✍️ โดย: เอ๋ ชี้ชะตาจร</span>
+        </div>
+      </header>
+
+      {/* เนื้อหาบทความจาก Markdown */}
+      <section 
+        className="blog-content"
+        dangerouslySetInnerHTML={{ __html: postData.contentHtml }} 
+        style={{ 
+          lineHeight: '1.8', 
+          fontSize: '1.15rem', 
+          color: '#333',
+          borderBottom: '1px solid #eee',
+          paddingBottom: '50px'
+        }}
+      />
+
+      {/* 4. Related Posts Section: ลด Bounce Rate ให้คนอ่านต่อ */}
+      {relatedPosts.length > 0 && (
+        <section style={{ marginTop: '60px' }}>
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '25px', color: 'var(--primary-blue)' }}>
+            บทความที่คุณอาจสนใจ
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+            {relatedPosts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                <div style={{ 
+                  padding: '20px', 
+                  backgroundColor: 'var(--bg-light)', 
+                  borderRadius: '12px',
+                  height: '100%',
+                  border: '1px solid #eee'
+                }}>
+                  <h4 style={{ color: 'var(--primary-blue)', margin: '0 0 10px 0' }}>{post.title}</h4>
+                  <p style={{ fontSize: '0.9rem', color: '#666', margin: 0 }}>อ่านต่อเพิ่มเติม &rarr;</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* CTA Box: ปิดการขายท้ายบทความ */}
+      <div style={{ 
+        marginTop: '80px', 
+        padding: '40px', 
+        backgroundColor: 'var(--primary-blue)', 
+        color: '#fff', 
+        borderRadius: '20px', 
+        textAlign: 'center' 
+      }}>
+        <h3 style={{ color: '#fff', marginBottom: '15px' }}>สนใจเจาะลึกเทคนิค SEO แบบตัวต่อตัว?</h3>
+        <p style={{ marginBottom: '25px', color: '#ccc' }}>เรียนรู้จากประสบการณ์จริง 15 ปี เพื่อผลลัพธ์ที่จับต้องได้</p>
+        <a href="https://line.me/ti/p/@450dglwo" target="_blank" rel="noopener noreferrer">
+          <button style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--primary-blue)', border: 'none', padding: '15px 40px', fontWeight: 'bold' }}>
+            ทักสอบถามอาจารย์เอ๋ผ่าน Line
+          </button>
+        </a>
+      </div>
+    </article>
+  );
+}

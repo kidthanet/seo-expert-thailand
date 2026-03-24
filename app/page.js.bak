@@ -1,0 +1,161 @@
+import Image from 'next/image';
+
+// 1. กำหนด Metadata เพื่อดันอันดับ Google หน้าแรก (เน้น Keyword สำคัญ)
+export const metadata = {
+  title: 'สอน SEO ตัวต่อตัว และสอนทำเว็บไซต์ WordPress แบบจับมือทำ | โดยผู้เชี่ยวชาญ 15 ปี',
+  description: 'คอร์สเรียน SEO ตัวต่อตัว ราคาคุ้มค่า และสอนทำเว็บไซต์ WordPress เริ่มต้น 2,900 บาท เรียนแบบจับมือทำ เจาะลึกเทคนิคติดหน้า 1 Google โดยอาจารย์เอ๋ ประสบการณ์ตรงกว่า 15 ปี',
+  keywords: 'สอน SEO ตัวต่อตัว, สอน SEO, เรียน SEO, สอนทำเว็บไซต์, สอน WordPress, สอนทำเว็บ SEO',
+};
+
+export default function Home() {
+  const lineLink = "https://line.me/ti/p/@450dglwo";
+
+  return (
+    <div>
+      {/* 2. Hero Section: ปรับ Padding เพื่อหลบ Navbar */}
+      <section className="hero-section" style={{ padding: '120px 20px 80px', textAlign: 'center', backgroundColor: 'var(--bg-light)' }}>
+        <div className="container">
+          <Image 
+            src="/images/hero-seo.jpg" 
+            alt="บรรยากาศการสอน SEO ตัวต่อตัว แบบจับมือทำ เจาะลึกเทคนิคติดหน้า 1 Google"
+            width={1200}
+            height={630}
+            priority={true} 
+            className="hero-image"
+            style={{ width: '100%', height: 'auto', borderRadius: '12px', marginBottom: '40px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+          />
+          <h1 style={{ fontSize: '2.8rem', marginBottom: '20px' }}>บริการ สอน SEO ตัวต่อตัว และสอนทำเว็บไซต์ WordPress</h1>
+          <p style={{ fontSize: '1.3rem', maxWidth: '800px', margin: '0 auto 30px', color: 'var(--text-light)' }}>
+            ยกระดับธุรกิจของคุณสู่หน้าแรก Google ด้วยเทคนิคสายขาวที่เห็นผลจริง 
+            สอนโดยผู้เชี่ยวชาญที่มีประสบการณ์ตรงในวงการ SEO และ Web Development มากว่า 15 ปี
+          </p>
+          <a href={lineLink} target="_blank" rel="noopener noreferrer">
+            <button style={{ padding: '18px 40px', fontSize: '1.2rem' }}>สอบถามคิวเรียน / ดูผลงานผ่าน Line</button>
+          </a>
+        </div>
+      </section>
+
+      {/* 3. บริการที่ 1: สอน SEO ตัวต่อตัว */}
+      <section className="container" style={{ margin: '80px auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '30px', borderBottom: '2px solid var(--secondary-blue)', paddingBottom: '15px' }}>
+          <Image 
+            src="/images/seo-class-icon.png" 
+            alt="ไอคอนคอร์สเรียน SEO ตัวต่อตัว" 
+            width={64} 
+            height={64} 
+          />
+          <h2 style={{ margin: 0 }}>1. คอร์สเรียน SEO ตัวต่อตัว (Step-by-Step)</h2>
+        </div>
+        <p style={{ fontSize: '1.1rem', marginBottom: '30px' }}>
+          การทำ <strong>สอน SEO ตัวต่อตัว</strong> ของเราไม่ได้เน้นแค่ทฤษฎี แต่เราเน้นการวิเคราะห์เว็บไซต์ของคุณจริงๆ 
+          เพื่อให้คุณเข้าใจว่าทำไมเว็บถึงไม่ติดอันดับ และต้องแก้อย่างไรให้ Google รักเว็บไซต์ของคุณ
+        </p>
+        
+        <div className="service-card" style={{ backgroundColor: '#fffbe6', padding: '40px', borderRadius: '20px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ color: 'var(--primary-blue)', marginBottom: '20px' }}>รายละเอียดคอร์ส SEO:</h3>
+          <ul style={{ paddingLeft: '20px', marginBottom: '30px', columns: '2', columnGap: '40px' }}>
+            <li style={{ marginBottom: '12px' }}><strong>Keyword Research:</strong> สอนหาคีย์เวิร์ดทำเงินจริง</li>
+            <li style={{ marginBottom: '12px' }}><strong>On-Page:</strong> ปรับโครงสร้างหน้าเว็บและ Content</li>
+            <li style={{ marginBottom: '12px' }}><strong>Technical SEO:</strong> Speed, Core Web Vitals</li>
+            <li style={{ marginBottom: '12px' }}><strong>Off-Page:</strong> เทคนิค Backlink คุณภาพสูง</li>
+            <li style={{ marginBottom: '12px' }}><strong>AI for SEO:</strong> ใช้ ChatGPT ช่วยทำคอนเทนต์</li>
+            <li style={{ marginBottom: '12px' }}><strong>Case Study:</strong> เจาะลึกจากประสบการณ์ 15 ปี</li>
+          </ul>
+          <div style={{ textAlign: 'center', borderTop: '1px solid #ddd', paddingTop: '20px' }}>
+             <p className="price-tag" style={{ fontSize: '1.6rem', fontWeight: 'bold' }}>
+                ค่าบริการ: 4,500 บาท (เรียน 5-6 ชั่วโมงเต็ม)
+             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. บริการที่ 2: สอนทำ WordPress */}
+      <section className="container" style={{ margin: '80px auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '30px', borderBottom: '2px solid #28a745', paddingBottom: '15px' }}>
+          <Image 
+            src="/images/wordpress-icon.png" 
+            alt="ไอคอนสอนทำเว็บไซต์ด้วย WordPress" 
+            width={64} 
+            height={64} 
+          />
+          <h2 style={{ margin: 0 }}>2. คอร์สสอนทำเว็บไซต์ WordPress & SEO Setup</h2>
+        </div>
+        <p style={{ fontSize: '1.1rem', marginBottom: '30px' }}>
+          คอร์สนี้จะสอนคุณตั้งแต่เริ่มจดโดเมนจนเว็บออนไลน์ได้จริง พร้อมตั้งค่าโครงสร้างให้พร้อมทำ SEO ทันที 
+          ไม่ต้องจ้างทำราคาแพง และแก้ไขเองได้ตลอดชีวิต
+        </p>
+        
+        <div className="service-card" style={{ backgroundColor: '#f0fff4', padding: '40px', borderRadius: '20px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' }}>
+          <h3 style={{ color: '#1b5e20', marginBottom: '20px' }}>สิ่งที่คุณจะได้รับ:</h3>
+          <ul style={{ paddingLeft: '20px', marginBottom: '30px' }}>
+            <li style={{ marginBottom: '12px' }}>การเลือก Hosting และติดตั้ง WordPress อย่างถูกวิธี</li>
+            <li style={{ marginBottom: '12px' }}>การเลือกและปรับแต่ง Theme ให้สวยงามและโหลดไว (Mobile Friendly)</li>
+            <li style={{ marginBottom: '12px' }}>การติดตั้ง Plugin ที่จำเป็นสำหรับ Security, Speed และ SEO</li>
+            <li style={{ marginBottom: '12px' }}><strong>SEO Integration:</strong> ตั้งค่าระบบหลังบ้านให้ Google เก็บข้อมูลได้แม่นยำ</li>
+          </ul>
+          <div style={{ textAlign: 'center', borderTop: '1px solid #c8e6c9', paddingTop: '20px' }}>
+            <p className="price-tag" style={{ fontSize: '1.6rem', fontWeight: 'bold', color: '#2e7d32' }}>
+              ค่าบริการ: 2,900 บาท (เรียน 6 ชั่วโมงเต็ม)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FAQ Section: ส่วนคำถามที่พบบ่อย */}
+      <section style={{ padding: '80px 20px', backgroundColor: '#fff' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <h2 style={{ fontSize: '2.2rem', color: 'var(--primary-blue)' }}>คำถามที่พบบ่อย (FAQ)</h2>
+            <p style={{ color: 'var(--text-light)' }}>รวบรวมข้อสงสัยที่คุณอาจต้องการทราบก่อนเริ่มเรียน</p>
+          </div>
+
+          <div style={{ display: 'grid', gap: '20px' }}>
+            <div style={{ padding: '25px', backgroundColor: 'var(--bg-light)', borderRadius: '15px', borderLeft: '5px solid var(--secondary-blue)' }}>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', color: 'var(--primary-blue)' }}>Q: ไม่มีพื้นฐานเรื่องโค้ดเลย จะเรียนรู้เรื่องไหม?</h3>
+              <p style={{ margin: 0 }}><strong>A: เรียนได้แน่นอนครับ</strong> ผมเน้นสอนให้เข้าใจกลยุทธ์และใช้เครื่องมือที่ทำตามได้ทันทีโดยไม่ต้องเขียนโค้ดเองครับ</p>
+            </div>
+            <div style={{ padding: '25px', backgroundColor: 'var(--bg-light)', borderRadius: '15px', borderLeft: '5px solid var(--secondary-blue)' }}>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', color: 'var(--primary-blue)' }}>Q: เรียนไปแล้ว นานไหมกว่าเว็บจะติดหน้าแรก?</h3>
+              <p style={{ margin: 0 }}><strong>A: โดยปกติจะเริ่มเห็นผลใน 1-3 เดือน</strong> ขึ้นอยู่กับการแข่งขันของคีย์เวิร์ด แต่เทคนิคที่ผมสอนจะช่วยให้คุณไปถึงจุดนั้นได้ยั่งยืนที่สุดครับ</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. ประวัติผู้เชี่ยวชาญ */}
+      <section style={{ backgroundColor: 'var(--bg-light)', padding: '80px 0' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '40px', flexWrap: 'wrap' }}>
+          <Image 
+            src="/images/expert-profile.jpg" 
+            alt="ผู้เชี่ยวชาญ SEO ประสบการณ์กว่า 15 ปี - เอ๋ ชี้ชะตาจร" 
+            width={300} 
+            height={300} 
+            style={{ borderRadius: '50%', boxShadow: '0 10px 20px rgba(0,0,0,0.1)', flexShrink: 0 }}
+          />
+          <div style={{ flex: 1, minWidth: '300px' }}>
+            <h2 style={{ color: 'var(--primary-blue)' }}>ทำไมต้องมั่นใจในประสบการณ์กว่า 15 ปี?</h2>
+            <p style={{ fontStyle: 'italic', borderLeft: '4px solid var(--secondary-blue)', paddingLeft: '15px', marginBottom: '20px', fontSize: '1.1rem' }}>
+              "ผมผ่านโลก SEO มาตั้งแต่ยุคเริ่มต้น จนถึงยุค AI ในปัจจุบัน เทคนิคที่สอนจึงมาจากประสบการณ์ทำจริง เจ็บจริง และสำเร็จจริง"
+            </p>
+            <p>
+              <strong>ผลงานการันตี:</strong> ดันคีย์เวิร์ดแข่งขันสูงติดหน้า 1 มาแล้วมากมาย ยินดีเปิดเผย Case Study ให้ดูระหว่างเรียนเพื่อเป็นแนวทางให้ธุรกิจของคุณครับ
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Final Call to Action */}
+      <section style={{ padding: '80px 20px', textAlign: 'center', backgroundColor: 'var(--primary-blue)', color: '#fff' }}>
+        <div className="container">
+          <h2 style={{ color: '#fff', fontSize: '2rem', marginBottom: '20px' }}>เริ่มสร้างตัวตนบนโลกออนไลน์วันนี้</h2>
+          <p style={{ color: '#ccc', marginBottom: '40px', fontSize: '1.1rem' }}>ปรึกษาเบื้องต้นฟรี หรือจองคิวเรียนเพื่อดันอันดับเว็บไซต์ของคุณ</p>
+          <a href={lineLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <div style={{ display: 'inline-block', backgroundColor: 'var(--accent-gold)', color: 'var(--primary-blue)', padding: '20px 50px', borderRadius: '50px', fontWeight: 'bold', fontSize: '1.5rem', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>
+              Line ID: @450dglwo
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+}
