@@ -1,9 +1,8 @@
-// app/layout.js
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import LineButton from "../components/LineButton"; // มั่นใจว่าสร้างไฟล์ใน components/LineButton.js แล้ว
+import LineButton from "../components/LineButton";
 
-// 1. กำหนด Metadata พื้นฐานสำหรับ SEO (แบบ Global)
+// 1. กำหนด Metadata สำหรับ SEO (แบบ Global)
 export const metadata = {
   title: {
     default: "สอน SEO ตัวต่อตัว เรียน SEO แบบจับมือทำ ติดหน้า 1 Google",
@@ -11,20 +10,25 @@ export const metadata = {
   },
   description: "รับสอน SEO ตัวต่อตัว เจาะลึกเทคนิคดันเว็บไซต์ติดหน้า 1 Google สอนโดยผู้เชี่ยวชาญประสบการณ์ 15 ปี เน้นผลลัพธ์และการทำจริง",
   keywords: ["สอน SEO ตัวต่อตัว", "สอน SEO", "เรียน SEO", "รับทำ SEO", "สอน WordPress"],
-  metadataBase: new URL("https://www.yourdomain.com"), // ** เปลี่ยนเป็นโดเมนจริงของคุณเมื่อ Online **
+  metadataBase: new URL("https://seo-expert-thailand.vercel.app"), // แก้ไข: เอา / ตัวสุดท้ายออกเพื่อป้องกัน Double Slash
   alternates: {
     canonical: "/",
   },
+  // --- เพิ่มส่วนการยืนยัน Google Search Console ตรงนี้ครับ ---
+  verification: {
+    google: "7BBssFYpU5x6v1w7W65eSgZF6l8pQNNa9Kv7QHry1Nw",
+  },
+  // ---------------------------------------------------
   openGraph: {
     title: "สอน SEO ตัวต่อตัว เรียน SEO แบบจับมือทำ",
-    description: "คอร์สเรียน SEO คุณภาพ เน้นพื้นฐานจนถึงระดับสูง โดยเอ๋ ชี้ชะตาจร",
-    url: "https://www.yourdomain.com",
+    description: "คอร์สเรียน SEO คุณภาพ เน้นพื้นฐานจนถึงระดับสูง โดย อาจารย์เอ๋ (พงษ์พิชญ)",
+    url: "https://seo-expert-thailand.vercel.app/",
     siteName: "SEO Expert Thailand",
     locale: "th_TH",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg", // เตรียมไฟล์รูปภาพขนาด 1200x630 ไว้ที่โฟลเดอร์ public
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "สอน SEO ตัวต่อตัว",
@@ -34,7 +38,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // 2. ข้อมูล JSON-LD สำหรับ Google Rich Snippets (Schema Markup)
+  // 2. ข้อมูล JSON-LD สำหรับ Google Rich Snippets
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -43,7 +47,7 @@ export default function RootLayout({ children }) {
     "provider": {
       "@type": "LocalBusiness",
       "name": "SEO Expert Thailand (เอ๋ ชี้ชะตาจร)",
-      "image": "https://www.yourdomain.com/logo.png",
+      "image": "https://seo-expert-thailand.vercel.app/logo.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Bangkok",
@@ -67,23 +71,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="th">
       <head>
-        {/* ฝัง JSON-LD ลงในส่วนหัวของหน้าเว็บเพื่อความรวดเร็วในการเก็บข้อมูลของ Bot */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body>
-        {/* Navigation Bar ยึดด้านบน แสดงทุกหน้า */}
         <Navbar />
-        
-        {/* เนื้อหาหลักที่เปลี่ยนไปตามแต่ละหน้า */}
         <main>{children}</main>
-
-        {/* ปุ่มลอย Line@ มุมขวาล่าง ติดตามไปทุกหน้าเพื่อเพิ่ม Conversion */}
         <LineButton />
-
-        {/* Footer พื้นฐานโทนสีน้ำเงินเข้มดูเป็นมืออาชีพ */}
         <footer style={{ 
           padding: '60px 20px', 
           textAlign: 'center', 
@@ -104,7 +100,7 @@ export default function RootLayout({ children }) {
               fontSize: '0.8rem', 
               color: '#aaa' 
             }}>
-              © 2026 สงวนลิขสิทธิ์เนื้อหาทั้งหมดโดย อาจารย์เอ๋(พงษ์พิชญ)
+              © 2026 สงวนลิขสิทธิ์เนื้อหาทั้งหมดโดย อาจารย์เอ๋ (พงษ์พิชญ)
             </div>
           </div>
         </footer>
